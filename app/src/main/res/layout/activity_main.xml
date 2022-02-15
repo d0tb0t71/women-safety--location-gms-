@@ -34,6 +34,14 @@
         android:text="Show Location"
         />
 
+    <Button
+        android:id="@+id/show_numbers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/print_Location"
+        android:text="Show Numbers"
+        />
+
 
 
 </LinearLayout>

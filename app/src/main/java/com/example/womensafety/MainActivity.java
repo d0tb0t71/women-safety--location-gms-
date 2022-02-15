@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -25,14 +26,14 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button get_help, show_location;
+    Button get_help, show_location,show_numbers;
     TextView print_Location;
 
     LocationManager locationManager;
     String lon = "";
     String lat = "";
     List<Address> addresses ;
-    String address;
+    String address="";
 
 
     @Override
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         get_help = findViewById(R.id.get_help);
         show_location = findViewById(R.id.show_location);
         print_Location = findViewById(R.id.print_Location);
+        show_numbers = findViewById(R.id.show_numbers);
 
         show_location.setEnabled(false);
 
@@ -54,8 +56,10 @@ public class MainActivity extends AppCompatActivity {
                 ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
 
-            ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-
+            ActivityCompat.requestPermissions(this, new String[] {
+                            Manifest.permission.ACCESS_FINE_LOCATION,
+                            Manifest.permission.ACCESS_COARSE_LOCATION },
+                        1);
         }
 
 
@@ -68,13 +72,14 @@ public class MainActivity extends AppCompatActivity {
 
                 lon = String.valueOf(location.getLongitude());
                 lat = String.valueOf(location.getLatitude());
-                show_location.setEnabled(true);
+
 
                 Geocoder geocoder;
                 geocoder = new Geocoder(MainActivity.this, Locale.getDefault());
                 try {
                     addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
                     address = addresses.get(0).getAddressLine(0);
+                    show_location.setEnabled(true);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -95,6 +100,13 @@ public class MainActivity extends AppCompatActivity {
                 Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
                 mapIntent.setPackage("com.google.android.apps.maps");
                 startActivity(mapIntent);
+            }
+        });
+
+        show_numbers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            startActivity(new Intent(getApplicationContext(),MyNumbers.class));
             }
         });
 
