@@ -6,6 +6,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -48,6 +49,18 @@ public class MainActivity extends AppCompatActivity {
         show_numbers = findViewById(R.id.show_numbers);
 
         show_location.setEnabled(false);
+
+
+        @SuppressLint("WrongConstant") SharedPreferences sh = getSharedPreferences("MySharedPref", MODE_APPEND);
+
+        System.out.println("1"+sh.getString("no1","+8801"));
+        System.out.println(sh.getString("no2","+8801"));
+        System.out.println(sh.getString("no3","+8801"));
+        System.out.println("===========================================================");
+        System.out.println(sh.getString("no4","+8801"));
+        System.out.println(sh.getString("no5","+8801"));
+
+
 
 
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);

@@ -29,7 +29,7 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/n1"
-            android:text="+8801"
+            android:text="+88017"
             android:textSize="23dp" />
 
         <ImageView

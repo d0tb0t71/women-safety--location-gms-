@@ -40,16 +40,6 @@ public class Login extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
 
-        SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref",MODE_PRIVATE);
-        SharedPreferences.Editor myEdit = sharedPreferences.edit();
-        myEdit.putString("no1", "+8801");
-        myEdit.putString("no2", "+8801");
-        myEdit.putString("no3", "+8801");
-        myEdit.putString("no4", "+8801");
-        myEdit.putString("no5", "+8801");
-        myEdit.commit();
-
-
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -1,5 +1,6 @@
 package com.example.womensafety;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -10,11 +11,19 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+
 public class MyNumbers extends AppCompatActivity {
 
     TextView no1,no2,no3,no4,no5;
     ImageView edit1,edit2,edit3,edit4,edit5;
     TextView n1,n2,n3,n4,n5;
+    FirebaseFirestore db;
 
 
     @Override
@@ -43,15 +52,33 @@ public class MyNumbers extends AppCompatActivity {
 
 
 
-        @SuppressLint("WrongConstant") SharedPreferences sh = getSharedPreferences("MySharedPref", MODE_APPEND);
-
-        no1.setText(sh.getString("no1","+8801"));
-        no2.setText(sh.getString("no2","+8801"));
-        no3.setText(sh.getString("no3","+8801"));
-        no4.setText(sh.getString("no4","+8801"));
-        no5.setText(sh.getString("no5","+8801"));
+        db = FirebaseFirestore.getInstance();
 
 
+        DocumentReference documentReference = db.collection("myNo").document(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+
+                n1.setText(value.getString("n1"));
+                n2.setText(value.getString("n2"));
+                n3.setText(value.getString("n3"));
+                n4.setText(value.getString("n4"));
+                n5.setText(value.getString("n5"));
+
+                no1.setText(value.getString("no1"));
+                no2.setText(value.getString("no2"));
+                no3.setText(value.getString("no3"));
+                no4.setText(value.getString("no4"));
+                no5.setText(value.getString("no5"));
+
+                //documentSnapshot.toObject(Vehicle.class);
+
+
+
+            }
+        })
+        ;
         Intent intent = new Intent(getBaseContext(), EditNumber.class);
 
 

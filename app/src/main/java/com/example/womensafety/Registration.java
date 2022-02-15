@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.womensafety.models.MyNumbersModel;
 import com.example.womensafety.models.UserModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -66,6 +67,12 @@ public class Registration extends AppCompatActivity {
                             db.collection("users")
                                     .document(user.getUid())
                                     .set(userModel);
+
+                            MyNumbersModel myNumbersModel = new MyNumbersModel("empty","empty","empty","empty","empty","empty","empty","empty","empty","empty");
+
+                            db.collection("myNo")
+                                    .document(user.getUid())
+                                    .set(myNumbersModel);
 
                         }
                         else{
