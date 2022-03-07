@@ -4,20 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class ShowEmergencyHelplineNumbers extends AppCompatActivity {
+public class EditProfile extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_emergency_helpline_numbers);
-
-
-        getSupportActionBar().setTitle("Emergency Numbers");
-
-
-
-
-
-
+        setContentView(R.layout.activity_edit_profile);
     }
 }

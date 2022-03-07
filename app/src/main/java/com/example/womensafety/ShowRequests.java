@@ -30,6 +30,7 @@ public class ShowRequests extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_requests);
 
+        getSupportActionBar().setTitle("Show Request");
 
         requests_recyclerview = findViewById(R.id.requests_recyclerview);
 

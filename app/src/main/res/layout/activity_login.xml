@@ -5,14 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:background="@color/teal_700"
+    android:background="@color/purple_500"
     tools:context=".Login">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="10dp"
-        >
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -21,46 +17,47 @@
             android:gravity="center"
             >
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                app:cardCornerRadius="50dp"
-                android:layout_marginBottom="20dp"
-                >
-
                 <ImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/ic_baseline_call_24"
-                    app:tint = "@color/white"
-
+                    android:src="@drawable/woman"
                     />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="WOMAN SAFETY"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:padding="10dp"
+                android:textColor="@color/white"
+                android:layout_marginBottom="20dp"
 
-            </androidx.cardview.widget.CardView>
+                />
+
 
             <EditText
                 android:id="@+id/email"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
-
-                android:padding="5dp"
-                android:hint="Email ID"
-                android:textColorHint="#C8C8C8"
+                android:textColor="@color/white"
                 android:layout_marginBottom="10dp"
-                />
+                android:hint="Email ID"
+                android:padding="5dp"
+                android:textColorHint="#C8C8C8" />
 
             <EditText
                 android:id="@+id/pass"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:hint="Password"
-                android:textColorHint="#C8C8C8"
                 android:layout_marginBottom="10dp"
-                />
+                android:textColor="@color/white"
+                android:hint="Password"
+                android:padding="5dp"
+                android:inputType="textPassword"
+                android:textColorHint="#C8C8C8" />
 
             <TextView
+                android:id="@+id/forgot_pass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Forgot Password?"
@@ -68,12 +65,14 @@
                 android:textSize="10dp"
                 android:textColor="@color/black"
                 />
+
             <Button
                 android:id="@+id/login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="LOGIN"
-                />
+                android:textColor="@color/black"
+                android:backgroundTint="@color/white"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -85,7 +84,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Don't have an account? "
-                    android:textSize="11dp"
+                    android:textSize="15dp"
+                    android:textColor="@color/white"
                     />
 
                 <TextView
@@ -93,7 +93,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="REGISTER NOW"
-                    android:textSize="13dp"
+                    android:textSize="17dp"
+                    android:textColor="@color/white"
                     android:textStyle="bold"
                     />
 
@@ -103,9 +104,6 @@
         </LinearLayout>
 
 
-
-
-    </androidx.cardview.widget.CardView>
 
 
 </RelativeLayout>

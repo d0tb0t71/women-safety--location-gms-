@@ -42,7 +42,7 @@ public class EmailVerify extends AppCompatActivity {
             }
             else{
                 user.sendEmailVerification();
-                Toast.makeText(getApplicationContext(), "Email Sent", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Your Email is not Verifed yet. \nAn Email Sent to your email,check and verify it", Toast.LENGTH_SHORT).show();
             }
 
 

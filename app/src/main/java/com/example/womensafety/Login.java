@@ -23,7 +23,7 @@ public class Login extends AppCompatActivity {
 
     EditText email, pass;
     Button login;
-    TextView register_now;
+    TextView register_now,forgot_pass;
 
     FirebaseAuth mAuth;
     FirebaseUser user;
@@ -32,10 +32,15 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        getSupportActionBar().setTitle("Login");
+
+
         email = findViewById(R.id.email);
         pass = findViewById(R.id.pass);
         login = findViewById(R.id.login);
         register_now = findViewById(R.id.register_now);
+        forgot_pass = findViewById(R.id.forgot_pass);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -81,6 +86,15 @@ public class Login extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), Registration.class));
             }
         });
+
+        forgot_pass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), ForgotPassword.class));
+            }
+        });
+
+
 
 
     }

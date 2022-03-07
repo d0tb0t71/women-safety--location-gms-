@@ -23,7 +23,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Registration extends AppCompatActivity {
 
-    EditText name,email,pass;
+    EditText name,email,pass,mobile;
     Button register;
     TextView login_now;
     FirebaseAuth mAuth;
@@ -35,11 +35,15 @@ public class Registration extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
+        getSupportActionBar().setTitle("Registration");
+
         name = findViewById(R.id.name);
         email = findViewById(R.id.email);
         pass = findViewById(R.id.pass);
         register = findViewById(R.id.register);
         login_now = findViewById(R.id.login_now);
+        mobile = findViewById(R.id.mobile);
+
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
@@ -50,6 +54,7 @@ public class Registration extends AppCompatActivity {
                 String Email = email.getText().toString();
                 String Pass = pass.getText().toString();
                 String Name = name.getText().toString();
+                String Mobile = mobile.getText().toString();
 
                 mAuth.createUserWithEmailAndPassword(Email,Pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -60,7 +65,7 @@ public class Registration extends AppCompatActivity {
 
                             FirebaseUser user = mAuth.getCurrentUser();
 
-                            UserModel userModel = new UserModel(user.getUid(),"",Name,Email);
+                            UserModel userModel = new UserModel(user.getUid(),"",Name,Email,Mobile);
 
                             db = FirebaseFirestore.getInstance();
 

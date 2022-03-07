@@ -31,6 +31,7 @@ public class MyNumbers extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_numbers);
 
+        getSupportActionBar().setTitle("My Numbers");
 
         no1 = findViewById(R.id.no1);
         no2 = findViewById(R.id.no2);
@@ -128,5 +129,12 @@ public class MyNumbers extends AppCompatActivity {
 
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        startActivity(new Intent(getApplicationContext(),MainActivity.class));
     }
 }

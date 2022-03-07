@@ -36,6 +36,8 @@ public class EditNumber extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_number);
 
+        getSupportActionBar().setTitle("Edit Numbers");
+
         edit_name = findViewById(R.id.edit_name);
         edit_no = findViewById(R.id.edit_no);
         save_info = findViewById(R.id.save_info);
@@ -44,6 +46,7 @@ public class EditNumber extends AppCompatActivity {
         user = FirebaseAuth.getInstance().getCurrentUser();
 
         String id = getIntent().getStringExtra("id");
+
 
         DocumentReference documentReference = db.collection("myNo").document(FirebaseAuth.getInstance().getCurrentUser().getUid());
         documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
@@ -58,18 +61,25 @@ public class EditNumber extends AppCompatActivity {
                    case "1":
                        edit_no.setText(myNumbersModel.getNo1());
                        edit_name.setText(myNumbersModel.getN1());
+                       break;
                    case "2":
                        edit_no.setText(myNumbersModel.getNo2());
                        edit_name.setText(myNumbersModel.getN2());
+                       break;
                    case "3":
                        edit_no.setText(myNumbersModel.getNo3());
                        edit_name.setText(myNumbersModel.getN3());
+                       break;
                    case "4":
                        edit_no.setText(myNumbersModel.getNo4());
                        edit_name.setText(myNumbersModel.getN4());
+                       break;
                    case "5":
                        edit_no.setText(myNumbersModel.getNo5());
                        edit_name.setText(myNumbersModel.getN5());
+                       break;
+                   default:
+                       System.out.println("No Index");
                }
 
 

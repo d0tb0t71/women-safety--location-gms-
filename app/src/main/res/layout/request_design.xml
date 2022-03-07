@@ -1,19 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:background="@drawable/req_back"
+    android:background="@color/purple_500"
     android:padding="20dp"
     android:layout_margin="2dp"
-    android:layout_height="180dp">
+    android:layout_height="190dp">
 
     <TextView
         android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Username"
-        android:textColor="@color/black"
-        android:textSize="20dp"
         android:layout_marginBottom="5dp"
+        android:text="Username"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/time_stamp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/username"
+        android:layout_marginBottom="5dp"
+        android:text="Date Time"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="17dp"
         android:textStyle="bold" />
 
 
@@ -21,7 +35,7 @@
         android:id="@+id/linear1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/username"
+        android:layout_below="@id/time_stamp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -31,7 +45,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/username"
             android:text="Location -    "
-            android:textColor="@color/black"
+            android:textColor="@color/white"
+            android:textStyle="bold"
             android:textSize="18dp" />
 
         <LinearLayout
@@ -46,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/username"
                 android:text="Latitude : "
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="15dp" />
 
             <TextView
@@ -55,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/username"
                 android:text="Longitute : "
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="15dp" />
 
         </LinearLayout>
@@ -76,7 +91,8 @@
             android:layout_height="wrap_content"
             android:text="Show In Map"
             android:layout_margin="5dp"
-
+            android:backgroundTint="@color/white"
+            android:textColor="@color/black"
             />
 
         <Button
@@ -85,6 +101,17 @@
             android:layout_height="wrap_content"
             android:text="Show Details"
             android:layout_margin="5dp"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/black"
+            />
+
+        <ImageView
+            android:id="@+id/delete_request"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_baseline_delete_forever_24"
+            app:tint="#E30B0B"
+            android:visibility="gone"
             />
 
     </LinearLayout>
