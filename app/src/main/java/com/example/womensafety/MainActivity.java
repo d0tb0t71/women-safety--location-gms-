@@ -27,6 +27,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.womensafety.models.RequestModel;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -57,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
     TextView need_help;
     LinearLayout need_help_l;
     Button show_emergency_numbers,show_request;
+
+    FusedLocationProviderClient fusedLocationProviderClient;
 
     TextView my_profile,emergency_number,all_request,my_contact;
 
@@ -122,38 +128,82 @@ public class MainActivity extends AppCompatActivity {
         })
         ;
 
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10, 1, new LocationListener() {
+
+        fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
             @Override
-            public void onLocationChanged(@NonNull Location location) {
-
-                print_Location.setText("MY LOCATION : "+String.valueOf(location.getLongitude()) + "\n" + String.valueOf(location.getLatitude()));
-
-
-                lon = String.valueOf(location.getLongitude());
-                lat = String.valueOf(location.getLatitude());
+            public void onComplete(@NonNull Task<Location> task) {
+                Location location = task.getResult();
 
 
-                Geocoder geocoder;
-                geocoder = new Geocoder(MainActivity.this, Locale.getDefault());
-                try {
-                    addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
-                    address = addresses.get(0).getAddressLine(0);
-                    show_location.setEnabled(true);
+                System.out.println("======================"+lon+"==========="+lat);
 
-                    //enable need
-                    need_help_card.setEnabled(true);
-                    need_help_l.setEnabled(true);
-                    need_help.setEnabled(true);
+                if(location!= null){
 
-                } catch (IOException e) {
-                    e.printStackTrace();
+                    System.out.println("==================Location != null");
+
+                    Geocoder geocoder = new Geocoder(MainActivity.this,Locale.getDefault());
+                    try {
+
+
+                        lon = String.valueOf(location.getLongitude());
+                        lat = String.valueOf(location.getLatitude());
+
+                        System.out.println("======================"+lon+"==========="+lat);
+
+                        print_Location.setText("MY LOCATION : "+String.valueOf(location.getLongitude()) + "\n" + String.valueOf(location.getLatitude()));
+
+
+
+                        need_help_card.setEnabled(true);
+                        need_help_l.setEnabled(true);
+                        need_help.setEnabled(true);
+
+                        addresses =geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                else {
+                    System.out.println("==================Location == null");
+
                 }
 
-
             }
-
         });
+
+//        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10, 1, new LocationListener() {
+//            @Override
+//            public void onLocationChanged(@NonNull Location location) {
+//
+//                print_Location.setText("MY LOCATION : "+String.valueOf(location.getLongitude()) + "\n" + String.valueOf(location.getLatitude()));
+//
+//
+//                lon = String.valueOf(location.getLongitude());
+//                lat = String.valueOf(location.getLatitude());
+//
+//
+//                Geocoder geocoder;
+//                geocoder = new Geocoder(MainActivity.this, Locale.getDefault());
+//                try {
+//                    addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+//                    address = addresses.get(0).getAddressLine(0);
+//                    show_location.setEnabled(true);
+//
+//                    //enable need
+//                    need_help_card.setEnabled(true);
+//                    need_help_l.setEnabled(true);
+//                    need_help.setEnabled(true);
+//
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//
+//
+//            }
+//
+//        });
 
 
         my_contact.setOnClickListener(new View.OnClickListener() {
